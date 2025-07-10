@@ -1,0 +1,47 @@
+[
+  {
+    "id": "flat-white",
+    "name": "Flat White",
+    "price": 3.0
+  },
+  {
+    "id": "long-black",
+    "name": "Long Black",
+    "price": 3.0
+  },
+  {
+    "id": "piccolo",
+    "name": "Piccolo",
+    "price": 2.0
+  },
+  {
+    "id": "soy",
+    "name": "Soy milk",
+    "price": 0.49
+  },
+  {
+    "id": "extra-shot",
+    "name": "Extra shot",
+    "price": 0.5
+  },
+  {
+    "id": "bacon-egg-roll",
+    "name": "Bacon and Egg Roll",
+    "price": 5.0
+  },
+  {
+    "id": "tomato-sauce",
+    "name": "Tomato sauce",
+    "price": 0.0
+  },
+  {
+    "id": "bbq-sauce",
+    "name": "BBQ sauce",
+    "price": 0.0
+  },
+  {
+    "id": "hash-brown",
+    "name": "Hash brown",
+    "price": 0.5
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Fred",
+    "money": 10.0,
+    "items": [
+      "long-black",
+      "extra-shot",
+      "bacon-egg-roll",
+      "bbq-sauce"
+    ]
+  },
+  {
+    "name": "Kelly",
+    "money": 10.0,
+    "items": [
+      "flat-white",
+      "soy",
+      "extra-shot",
+      "bacon-egg-roll",
+      "bbq-sauce"
+    ]
+  },
+  {
+    "name": "Tom",
+    "money": 7.0,
+    "items": [
+      "piccolo",
+      "bacon-egg-roll",
+      "bbq-sauce"
+    ]
+  }
+]
