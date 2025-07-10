@@ -72,6 +72,21 @@ RSpec.describe 'BreakfastApp' do
       malformed_json = '[{ name: "bob", items: [espresso] ' # missing brackets and quotes
       expect { BreakfastApp.call(price_list_json, malformed_json) }.to raise_error(JSON::ParserError)
     end
+
+    it 'raises error for missing price in price list' do
+      malformed_price_list = JSON.generate([{ id: 'coffee', name: 'Coffee' }])
+      orders_json = JSON.generate([{ name: 'bob', money: 5.0, items: ['coffee'] }])
+      expect { BreakfastApp.call(malformed_price_list, orders_json) }.to raise_error(StandardError)
+    end
+
+    it 'raises error for duplicate item IDs in price list' do
+      malformed_price_list = JSON.generate([
+        { id: 'coffee', name: 'Coffee', price: 3.0 },
+        { id: 'coffee', name: 'Espresso', price: 2.0 }
+      ])
+      orders_json = JSON.generate([{ name: 'bob', money: 10.0, items: ['coffee'] }])
+      expect { BreakfastApp.call(malformed_price_list, orders_json) }.to raise_error(StandardError)
+    end
   end
 
   describe 'Scalability and performance' do
@@ -112,6 +127,15 @@ RSpec.describe 'BreakfastApp' do
       orders_json = JSON.generate([{ name: 'precision', money: 5.0, items: ['weird-coffee', 'weird-coffee'] }])
       res = JSON.parse(BreakfastApp.call(price_list, orders_json))
       expect(res.first['change']).to be_within(0.01).of(0.33)
+    end
+  end
+
+  describe 'Security vulnerability check' do
+    it 'handles XSS-style names safely' do
+      orders_json = JSON.generate([{ name: '<script>alert("x")</script>', money: 5.0, items: ['espresso'] }])
+      res = JSON.parse(BreakfastApp.call(price_list_json, orders_json))
+      expect(res.first['name']).to eq('<script>alert("x")</script>')
+      expect(res.first['change']).to eq(3.0)
     end
   end
 end
